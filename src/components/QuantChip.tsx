@@ -54,6 +54,8 @@ export const QuantChip = ({
         <TokenIcon token={token} size="sm" glow />
       </div>
 
+      <div className="w-px h-4 bg-border/50 rounded-full" />
+
       <div className="flex items-center gap-1.5">
         {positions.map((position, index) => (
           <HoverCard key={index} openDelay={100} closeDelay={100}>
