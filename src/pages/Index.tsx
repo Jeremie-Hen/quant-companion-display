@@ -15,7 +15,6 @@ const Index = () => {
       <div className="fixed bottom-6 left-6 z-30">
         <QuantChip
           token="BTC"
-          positionsCount={2}
           positions={[
             { token: "BTC", percentage: -0.15, amount: 15.32 },
             { token: "ETH", percentage: -3.84, amount: 42.18 },
