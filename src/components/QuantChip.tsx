@@ -53,7 +53,7 @@ export const QuantChip = ({
           align="start"
           className="w-auto p-0 border-0 bg-transparent shadow-none"
         >
-          <PositionPreview positions={positions} />
+          <PositionPreview positions={positions} onPositionClick={onClick} />
         </PopoverContent>
       </Popover>
     </div>
