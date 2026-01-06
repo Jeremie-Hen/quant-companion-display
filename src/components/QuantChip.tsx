@@ -1,9 +1,9 @@
 import { TokenIcon } from "./TokenIcon";
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
 import quantIcon from "@/assets/quant-icon.png";
 
 interface Position {
@@ -41,26 +41,23 @@ export const QuantChip = ({
 
       <div className="flex items-center gap-1.5">
         {positions.map((position, index) => (
-          <Popover key={index}>
-            <PopoverTrigger asChild>
+          <HoverCard key={index} openDelay={100} closeDelay={100}>
+            <HoverCardTrigger asChild>
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   onClick();
                 }}
-                className="relative group"
+                className={`w-6 h-6 rounded-full flex items-center justify-center border-2 transition-all hover:scale-110 ${
+                  position.percentage >= 0
+                    ? "bg-success/20 border-success"
+                    : "bg-destructive/20 border-destructive"
+                }`}
               >
-                <div
-                  className={`absolute inset-0 rounded-full blur-md transition-opacity opacity-60 group-hover:opacity-100 ${
-                    position.percentage >= 0 ? "bg-success" : "bg-destructive"
-                  }`}
-                />
-                <div className="relative">
-                  <TokenIcon token={position.token} size="sm" />
-                </div>
+                <TokenIcon token={position.token} size="sm" />
               </button>
-            </PopoverTrigger>
-            <PopoverContent
+            </HoverCardTrigger>
+            <HoverCardContent
               side="top"
               align="center"
               className="w-auto p-0 border-0 bg-transparent shadow-none"
@@ -80,8 +77,8 @@ export const QuantChip = ({
                   ${Math.abs(position.amount).toFixed(2)}
                 </span>
               </div>
-            </PopoverContent>
-          </Popover>
+            </HoverCardContent>
+          </HoverCard>
         ))}
       </div>
     </div>
