@@ -1,11 +1,11 @@
 import { TokenIcon } from "./TokenIcon";
-import { MoreHorizontal } from "lucide-react";
 import { PositionPreview } from "./PositionPreview";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import quantIcon from "@/assets/quant-icon.png";
 
 interface Position {
   token: string;
@@ -28,6 +28,16 @@ export const QuantChip = ({
 }: QuantChipProps) => {
   return (
     <div className="glass rounded-full px-3 py-2 flex items-center gap-2.5 chip-hover">
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          onClick();
+        }}
+        className="w-5 h-5 rounded-full flex items-center justify-center hover:opacity-80 transition-opacity"
+      >
+        <img src={quantIcon} alt="Quant" className="w-5 h-5 rounded-full" />
+      </button>
+
       <div onClick={onClick} className="cursor-pointer">
         <TokenIcon token={token} size="sm" glow />
       </div>
@@ -46,16 +56,6 @@ export const QuantChip = ({
           <PositionPreview positions={positions} />
         </PopoverContent>
       </Popover>
-
-      <button
-        onClick={(e) => {
-          e.stopPropagation();
-          onClick();
-        }}
-        className="w-5 h-5 rounded-full hover:bg-muted/50 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
-      >
-        <MoreHorizontal className="w-3.5 h-3.5" />
-      </button>
     </div>
   );
 };
