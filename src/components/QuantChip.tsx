@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { Minimize2, Maximize2 } from "lucide-react";
 import { TokenIcon } from "./TokenIcon";
 import {
   HoverCard,
@@ -23,6 +25,19 @@ export const QuantChip = ({
   positions,
   onClick,
 }: QuantChipProps) => {
+  const [isMinimized, setIsMinimized] = useState(false);
+
+  if (isMinimized) {
+    return (
+      <button
+        onClick={() => setIsMinimized(false)}
+        className="glass rounded-full p-2 flex items-center justify-center chip-hover hover:scale-105 transition-transform"
+      >
+        <img src={quantIcon} alt="Quant" className="w-5 h-5 rounded-full" />
+      </button>
+    );
+  }
+
   return (
     <div className="glass rounded-full px-3 py-2 flex items-center gap-2.5 chip-hover">
       <button
@@ -81,6 +96,16 @@ export const QuantChip = ({
           </HoverCard>
         ))}
       </div>
+
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          setIsMinimized(true);
+        }}
+        className="w-5 h-5 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-white/10 transition-colors"
+      >
+        <Minimize2 className="w-3 h-3" />
+      </button>
     </div>
   );
 };
