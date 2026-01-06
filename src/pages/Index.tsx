@@ -2,6 +2,7 @@ import { useState } from "react";
 import { CryptoBackground } from "@/components/CryptoBackground";
 import { QuantChip } from "@/components/QuantChip";
 import { QuantDrawer } from "@/components/QuantDrawer";
+import { TradeNotification } from "@/components/TradeNotification";
 
 const Index = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(true);
@@ -11,8 +12,8 @@ const Index = () => {
       {/* Blurred Background */}
       <CryptoBackground />
 
-      {/* Quant Chip - Bottom Left */}
-      <div className="fixed bottom-6 left-6 z-30">
+      {/* Bottom Left Controls */}
+      <div className="fixed bottom-6 left-6 z-30 flex items-center gap-3">
         <QuantChip
           token="BTC"
           positions={[
@@ -21,6 +22,7 @@ const Index = () => {
           ]}
           onClick={() => setIsDrawerOpen(true)}
         />
+        <TradeNotification />
       </div>
 
       {/* Quant Drawer */}
