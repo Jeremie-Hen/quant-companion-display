@@ -8,13 +8,18 @@ interface Position {
 
 interface PositionPreviewProps {
   positions: Position[];
+  onPositionClick?: () => void;
 }
 
-export const PositionPreview = ({ positions }: PositionPreviewProps) => {
+export const PositionPreview = ({ positions, onPositionClick }: PositionPreviewProps) => {
   return (
     <div className="glass rounded-xl p-2 min-w-[140px] space-y-1">
       {positions.map((position, index) => (
-        <div key={index} className="flex items-center gap-2 px-2 py-1.5">
+        <div
+          key={index}
+          onClick={onPositionClick}
+          className="flex items-center gap-2 px-2 py-1.5 rounded-lg cursor-pointer transition-all duration-200 hover:bg-white/10 hover:scale-[1.02]"
+        >
           <TokenIcon token={position.token} size="sm" />
           <span className="text-xs font-medium text-foreground">{position.token}</span>
           <div className="ml-auto flex items-center gap-2">
