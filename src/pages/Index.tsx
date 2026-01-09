@@ -17,8 +17,8 @@ const Index = () => {
         <QuantChip
           token="BTC"
           positions={[
-            { token: "BTC", percentage: -0.15, amount: 15.32 },
-            { token: "ETH", percentage: -3.84, amount: 42.18 },
+            { token: "BTC", percentage: -0.15, amount: 15.32, size: 2500, tpDistance: 4.2, slDistance: 2.1 },
+            { token: "ETH", percentage: -3.84, amount: 42.18, size: 1800, tpDistance: 6.8, slDistance: 1.5 },
           ]}
           onClick={() => setIsDrawerOpen(true)}
         />
