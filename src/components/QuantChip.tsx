@@ -12,6 +12,9 @@ interface Position {
   token: string;
   percentage: number;
   amount: number;
+  size?: number;
+  tpDistance?: number;
+  slDistance?: number;
 }
 
 interface QuantChipProps {
@@ -79,20 +82,33 @@ export const QuantChip = ({
               align="center"
               className="w-auto p-0 border-0 bg-transparent shadow-none"
             >
-              <div className="glass rounded-xl px-3 py-2 flex items-center gap-2">
-                <TokenIcon token={position.token} size="sm" />
-                <span className="text-xs font-medium text-foreground">{position.token}</span>
-                <span
-                  className={`text-xs font-semibold ${
-                    position.percentage >= 0 ? "text-success" : "text-destructive"
-                  }`}
-                >
-                  {position.percentage >= 0 ? "+" : ""}
-                  {position.percentage.toFixed(2)}%
-                </span>
-                <span className="text-xs text-muted-foreground">
-                  ${Math.abs(position.amount).toFixed(2)}
-                </span>
+              <div className="glass rounded-xl px-3 py-2 flex flex-col gap-1.5">
+                <div className="flex items-center gap-2">
+                  <TokenIcon token={position.token} size="sm" />
+                  <span className="text-xs font-medium text-foreground">{position.token}</span>
+                  <span
+                    className={`text-xs font-semibold ${
+                      position.percentage >= 0 ? "text-success" : "text-destructive"
+                    }`}
+                  >
+                    {position.percentage >= 0 ? "+" : ""}
+                    {position.percentage.toFixed(2)}%
+                  </span>
+                  <span className="text-xs text-muted-foreground">
+                    ${Math.abs(position.amount).toFixed(2)}
+                  </span>
+                </div>
+                <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                  {position.size !== undefined && (
+                    <span>Size: <span className="text-foreground font-medium">${position.size.toLocaleString()}</span></span>
+                  )}
+                  {position.tpDistance !== undefined && (
+                    <span>TP: <span className="text-success font-medium">{position.tpDistance.toFixed(1)}%</span></span>
+                  )}
+                  {position.slDistance !== undefined && (
+                    <span>SL: <span className="text-destructive font-medium">{position.slDistance.toFixed(1)}%</span></span>
+                  )}
+                </div>
               </div>
             </HoverCardContent>
           </HoverCard>
