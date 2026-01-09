@@ -13,8 +13,9 @@ interface Position {
   percentage: number;
   amount: number;
   size?: number;
-  tpDistance?: number;
-  slDistance?: number;
+  currentPrice?: number;
+  tpPrice?: number;
+  slPrice?: number;
 }
 
 interface QuantChipProps {
@@ -102,11 +103,16 @@ export const QuantChip = ({
                   {position.size !== undefined && (
                     <span>Size: <span className="text-foreground font-medium">${position.size.toLocaleString()}</span></span>
                   )}
-                  {position.tpDistance !== undefined && (
-                    <span>TP: <span className="text-success font-medium">{position.tpDistance.toFixed(1)}%</span></span>
+                  {position.currentPrice !== undefined && (
+                    <span>Price: <span className="text-foreground font-medium">${position.currentPrice.toLocaleString()}</span></span>
                   )}
-                  {position.slDistance !== undefined && (
-                    <span>SL: <span className="text-destructive font-medium">{position.slDistance.toFixed(1)}%</span></span>
+                </div>
+                <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                  {position.tpPrice !== undefined && (
+                    <span>TP: <span className="text-success font-medium">${position.tpPrice.toLocaleString()}</span></span>
+                  )}
+                  {position.slPrice !== undefined && (
+                    <span>SL: <span className="text-destructive font-medium">${position.slPrice.toLocaleString()}</span></span>
                   )}
                 </div>
               </div>
